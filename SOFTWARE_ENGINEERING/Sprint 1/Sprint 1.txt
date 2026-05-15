@@ -1,0 +1,37 @@
+Sprint 1
+
+During Sprint 1, the development team focused on preparing the core system architecture and implementing the authentication workflow. The team prioritized foundational features because all future booking and notification functionalities depend on secure user management and role-based access control.
+
+The sprint planning session identified the following priorities:
+
+Setting up the Django project structure
+Configuring SQLite database integration
+Creating the custom User model
+Implementing login and registration functionality
+Creating provider profile management
+Designing the base frontend layout and navigation
+
+Tasks were distributed among team members according to their specialization in backend development, frontend integration, and testing/documentation.
+
+Potential risks identified during planning included database relationship complexity and authentication validation issues. To reduce these risks, the team decided to implement and test authentication modules incrementally.
+
+
+(((((((((((((((((((((((((((((((((((SPRINT BACKLOG)))))))))))))))))))))))))))))))))
+
+
+Sprint Planning
+
+During Sprint 1, the development team focused on preparing the core system architecture and implementing the authentication workflow. The team prioritized foundational features because all future booking and notification functionalities depend on secure user management and role-based access control.
+
+The sprint planning session identified the following priorities:
+
+Setting up the Django project structure
+Configuring SQLite database integration
+Creating the custom User model
+Implementing login and registration functionality
+Creating provider profile management
+Designing the base frontend layout and navigation
+
+Tasks were distributed among team members according to their specialization in backend development, frontend integration, and testing/documentation.
+
+Potential risks identified during planning included database relationship complexity and authentication validation issues. To reduce these risks, the team decided to implement and test authentication modules incrementally.

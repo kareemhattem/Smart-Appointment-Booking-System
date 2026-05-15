@@ -1,0 +1,74 @@
+Sprint 3
+
+Sprint Goal
+
+The goal of Sprint 3 was to finalize the SmartBook platform by implementing the notification system, review and rating functionality, role-based dashboards, UI enhancements, and comprehensive testing.
+
+This sprint focused on improving the overall user experience, increasing system usability, and preparing the platform for final deployment and presentation.
+
+Sprint Duration
+
+Sprint Number: Sprint 3
+Duration: 1 Week
+Start Date: Week 3
+End Date: End of Week 3
+
+Sprint Planning
+
+During Sprint 3, the team focused on implementing advanced system features and refining the platform for final delivery. The sprint planning session prioritized user experience improvements, notification handling, dashboard functionality, and system testing.
+
+The team planned to implement:
+
+Real-time notification system
+Notification unread count API
+Review and rating system
+User/provider/admin dashboards
+UI responsiveness improvements
+Bug fixing and optimization
+Final testing and documentation
+
+The sprint also included preparing UML diagrams, Scrum documentation, and presentation materials required for project submission.
+
+Special attention was given to ensuring smooth integration between notifications, appointment updates, and dashboard interactions.
+
+Potential risks identified during planning included notification synchronization and frontend responsiveness issues across different screen sizes.
+
+(((((((((((((((((((((((((((((((((((SPRINT BACKLOG)))))))))))))))))))))))))))))))))
+
+
+Sprint Review
+
+At the end of Sprint 3, the SmartBook platform was fully completed and integrated successfully. The team finalized all remaining system modules and prepared the project for demonstration and submission.
+
+The notification system successfully delivered real-time updates related to appointment actions, while the review system allowed users to leave ratings and feedback after completed appointments.
+
+The implemented dashboards provided role-based functionality for users, providers, and administrators. UI responsiveness and frontend usability were also significantly improved during this sprint.
+
+The following features were demonstrated during the sprint review:
+
+Real-time notification handling
+Notification unread count updates
+Review and rating submission
+User/provider/admin dashboards
+Responsive frontend design
+Final integrated system workflow
+
+Feedback received during the review praised the modular system architecture, booking validation workflow, and clean user interface.
+
+Sprint Retrospective
+What Went Well
+Notification and review systems were integrated successfully.
+Final system testing identified and resolved multiple minor issues.
+Team collaboration improved significantly across all modules.
+The platform achieved a stable and professional final state.
+Challenges Faced
+Notification synchronization required additional frontend and backend coordination.
+Dashboard responsiveness required multiple UI adjustments.
+Final integration testing took longer than initially estimated.
+Improvements for Future Projects
+Begin integration testing earlier in development.
+Improve estimation for frontend polishing tasks.
+Increase automation in testing repetitive workflows.
+Conclusion
+
+Sprint 3 successfully finalized the SmartBook platform by completing advanced system features, improving user experience, and preparing the project for final presentation and deployment. The system was fully functional, stable, and aligned with all project requirements.

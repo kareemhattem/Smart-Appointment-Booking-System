@@ -1,0 +1,55 @@
+Presentation
+=================================================================================
+
+WHAT YOU SHOULD SHOW IN THE PRESENTATION FOR SPRINT 1
+
+Do NOT overload the audience.
+
+Best Sprint 1 presentation flow:
+
+Sprint Goal
+Scrum Board
+Use Case Diagram
+Authentication Activity Diagram
+Registration Sequence Diagram
+Partial Class Diagram
+Demo Login/Register
+
+=================================================================================
+WHAT TO SHOW IN PRESENTATION FOR SPRINT 2
+
+Best flow:
+
+Sprint Goal
+Scrum Board
+Booking Activity Diagram
+Sequence Diagram
+State Diagram
+Validation Flow
+Demo booking workflow
+
+=================================================================================
+
+WHAT TO SHOW IN PRESENTATION FOR SPRINT 3
+
+Best flow:
+
+Sprint Goal
+Scrum Board
+Notification Sequence Diagram
+Review Activity Diagram
+Collaboration Diagram
+Final Class Diagram
+Demo final system
+
+=================================================================================
+IMPORTANT
+
+Now your Agile progression is fully realistic:
+
+Sprint	Focus
+Sprint 1	Foundation & Authentication
+Sprint 2	Booking Engine
+Sprint 3	Notifications, Reviews, Finalization
+
+This is a VERY believable Scrum workflow for your SmartBook project.

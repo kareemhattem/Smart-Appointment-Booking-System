@@ -1,0 +1,78 @@
+Sprint 2
+Sprint Goal
+
+The goal of Sprint 2 was to develop the core appointment booking engine of the SmartBook platform. This sprint focused on implementing provider availability management, appointment scheduling, booking validation, and appointment lifecycle management.
+
+The sprint also aimed to ensure that the system could securely handle appointment requests while preventing double-booking conflicts through database validation and overlap detection mechanisms.
+
+Sprint Duration
+
+Sprint Number: Sprint 2
+Duration: 1 Week
+Start Date: Week 2
+End Date: End of Week 2
+
+(((((((((((((((((((((((((((((((((((SPRINT BACKLOG)))))))))))))))))))))))))))))))))
+
+Sprint Planning
+
+During Sprint 2, the team focused on building the central functionality of the SmartBook system, which is the appointment booking workflow. The sprint planning session identified booking management and validation logic as the highest priorities because they represent the core business logic of the platform.
+
+The team planned to implement:
+
+Appointment management
+Provider availability slots
+Booking forms and validation
+Appointment lifecycle states
+Provider approval/rejection workflow
+Booking conflict prevention
+
+Special attention was given to designing the overlap validation system to ensure that providers cannot receive multiple appointments during conflicting time slots.
+
+Tasks were distributed among team members according to backend logic implementation, frontend integration, and testing responsibilities.
+
+Potential risks identified during planning included complex time-slot validation and appointment state synchronization.
+
+Sprint Review
+
+At the end of Sprint 2, the team successfully completed the development of the core booking engine and appointment management workflow.
+
+The system was able to:
+
+Allow users to browse providers
+Create appointment requests
+Validate booking time slots
+Prevent overlapping appointments
+Manage provider availability
+Allow providers to confirm or reject appointments
+Handle appointment lifecycle transitions
+
+The implemented booking validation logic successfully prevented scheduling conflicts and duplicate active appointments.
+
+The following features were demonstrated during the sprint review:
+
+Appointment creation workflow
+Provider availability management
+Appointment confirmation and rejection
+Booking validation and overlap prevention
+Appointment status transitions
+
+Feedback received during the review suggested improving notification handling and enhancing dashboard usability in the next sprint.
+
+Sprint Retrospective
+What Went Well
+The booking workflow was implemented successfully with minimal integration issues.
+Double-booking prevention logic worked reliably during testing.
+Team collaboration between backend and frontend development improved compared to Sprint 1.
+Database relationships and appointment state management were completed efficiently.
+Challenges Faced
+Time-slot overlap validation required multiple test cases to ensure accuracy.
+Managing appointment status transitions introduced additional complexity.
+Synchronizing frontend booking forms with backend validation logic required additional debugging.
+Improvements for Next Sprint
+Increase automated testing coverage for booking scenarios.
+Improve frontend feedback messages for booking errors.
+Allocate more time for UI refinement and dashboard enhancements.
+Conclusion
+
+Sprint 2 successfully delivered the core appointment booking engine of the SmartBook platform. The system now supports secure and validated appointment scheduling, preparing the project for notifications, reviews, dashboards, and final system enhancements in Sprint 3.
