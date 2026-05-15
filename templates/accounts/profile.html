@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}My Profile — SmartBook{% endblock %}
+{% block main_class %}bg-light min-vh-100{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm" style="border-radius: 20px;">
+                <div class="card-body p-5">
+                    <div class="d-flex align-items-center mb-4">
+                        <img src="{{ user.get_avatar_url }}" class="rounded-circle me-4" width="90" height="90" style="object-fit:cover;" onerror="if(!this.dataset.fallbackUsed){this.dataset.fallbackUsed='1';this.src='/static/images/default-avatar.svg';}else{this.onerror=null;}" alt="{{ user.username }}">
+                        <div>
+                            <h4 class="fw-bold mb-1">{{ user.get_full_name|default:user.username }}</h4>
+                            <span class="badge bg-primary rounded-pill px-3">{{ user.get_role_display }}</span>
+                            <p class="text-muted small mt-1 mb-0">Member since {{ user.date_joined|date:"F Y" }}</p>
+                        </div>
+                        <a href="{% url 'accounts:profile_edit' %}" class="btn btn-outline-primary rounded-pill ms-auto px-4">
+                            <i class="bi bi-pencil me-2"></i>Edit
+                        </a>
+                    </div>
+                    <hr>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="text-muted small">Email</label>
+                            <p class="fw-medium">{{ user.email|default:"—" }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="text-muted small">Phone</label>
+                            <p class="fw-medium">{{ user.phone|default:"—" }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="text-muted small">Date of Birth</label>
+                            <p class="fw-medium">{{ user.date_of_birth|date:"M d, Y"|default:"—" }}</p>
+                        </div>
+                        <div class="col-12">
+                            <label class="text-muted small">Bio</label>
+                            <p class="fw-medium">{{ user.bio|default:"No bio added yet." }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

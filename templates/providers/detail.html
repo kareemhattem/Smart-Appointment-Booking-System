@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% block title %}{{ provider.get_full_name }} — SmartBook{% endblock %}
+{% block main_class %}bg-light min-vh-100{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row g-4">
+        <!-- Provider Info -->
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm" style="border-radius: 20px;">
+                <div class="card-body p-4 text-center">
+                    <img src="{% if profile %}{{ profile.get_image_url }}{% else %}/static/images/default-provider.svg{% endif %}"
+                         class="rounded-circle mb-3 provider-img" width="100" height="100" style="object-fit:cover;"
+                         onerror="if(!this.dataset.fallbackUsed){this.dataset.fallbackUsed='1';this.src='/static/images/default-provider.svg';}else{this.onerror=null;}" alt="{{ provider.username }}">
+                    <h5 class="fw-bold mb-1">{{ provider.get_full_name|default:provider.username }}</h5>
+                    {% if profile %}<p class="text-muted small mb-2">{{ profile.title }}</p>{% endif %}
+
+                    <div class="d-flex justify-content-center align-items-center mb-3">
+                        {% for i in "12345" %}
+                        <i class="bi bi-star{% if forloop.counter <= avg_rating %}-fill text-warning{% else %} text-muted{% endif %}"></i>
+                        {% endfor %}
+                        <span class="ms-2 text-muted small">{{ avg_rating }} ({{ reviews|length }} reviews)</span>
+                    </div>
+
+                    {% if profile %}
+                    {% if profile.category %}
+                    <span class="badge bg-primary bg-opacity-10 text-primary mb-3">{{ profile.category.name }}</span>
+                    {% endif %}
+                    <div class="text-start mt-3">
+                        <div class="d-flex justify-content-between py-2 border-bottom">
+                            <span class="text-muted small">Experience</span>
+                            <span class="fw-medium small">{{ profile.experience_years }} years</span>
+                        </div>
+                        <div class="d-flex justify-content-between py-2 border-bottom">
+                            <span class="text-muted small">Fee</span>
+                            <span class="fw-bold text-success">${{ profile.consultation_fee }}</span>
+                        </div>
+                        {% if profile.location %}
+                        <div class="d-flex justify-content-between py-2 border-bottom">
+                            <span class="text-muted small">Location</span>
+                            <span class="fw-medium small">{{ profile.location }}</span>
+                        </div>
+                        {% endif %}
+                        <div class="d-flex justify-content-between py-2">
+                            <span class="text-muted small">Status</span>
+                            {% if profile.is_available %}
+                            <span class="badge bg-success">Available</span>
+                            {% else %}
+                            <span class="badge bg-secondary">Unavailable</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if user.is_authenticated and user.role == 'user' %}
+                    <a href="{% url 'appointments:book' provider.pk %}" class="btn btn-primary w-100 rounded-pill mt-4 py-2 fw-semibold">
+                        <i class="bi bi-calendar-plus me-2"></i>Book Appointment
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Details -->
+        <div class="col-lg-8">
+            {% if provider.bio %}
+            <div class="card border-0 shadow-sm mb-4" style="border-radius: 16px;">
+                <div class="card-body p-4">
+                    <h6 class="fw-bold mb-3">About</h6>
+                    <p class="text-muted mb-0">{{ provider.bio }}</p>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Availability -->
+            {% if slots %}
+            <div class="card border-0 shadow-sm mb-4" style="border-radius: 16px;">
+                <div class="card-body p-4">
+                    <h6 class="fw-bold mb-3"><i class="bi bi-clock me-2 text-primary"></i>Availability</h6>
+                    <div class="row g-2">
+                        {% for slot in slots %}
+                        <div class="col-auto">
+                            <span class="badge bg-light text-dark border px-3 py-2">
+                                {{ slot.get_day_name }} · {{ slot.start_time|time:"g:i A" }} – {{ slot.end_time|time:"g:i A" }}
+                            </span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Reviews -->
+            <div class="card border-0 shadow-sm" style="border-radius: 16px;">
+                <div class="card-body p-4">
+                    <h6 class="fw-bold mb-4"><i class="bi bi-star me-2 text-warning"></i>Reviews</h6>
+                    {% if reviews %}
+                    {% for review in reviews %}
+                    <div class="mb-4 pb-4 {% if not forloop.last %}border-bottom{% endif %}">
+                        <div class="d-flex align-items-center mb-2">
+                            <img src="{{ review.reviewer.get_avatar_url }}" class="rounded-circle me-2" width="36" height="36" style="object-fit:cover;" onerror="if(!this.dataset.fallbackUsed){this.dataset.fallbackUsed='1';this.src='/static/images/default-avatar.svg';}else{this.onerror=null;}" alt="{{ review.reviewer.username }}">
+                            <div>
+                                <div class="fw-medium small">{{ review.reviewer.get_full_name|default:review.reviewer.username }}</div>
+                                <div class="text-muted" style="font-size:0.75rem;">{{ review.created_at|date:"M d, Y" }}</div>
+                            </div>
+                            <div class="ms-auto">
+                                {% for i in "12345" %}
+                                <i class="bi bi-star{% if forloop.counter <= review.rating %}-fill text-warning{% else %} text-muted{% endif %} small"></i>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% if review.comment %}
+                        <p class="text-muted small mb-0 ms-5">{{ review.comment }}</p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div class="text-center py-3 text-muted">
+                        <i class="bi bi-chat-square-text fs-2 d-block mb-2 opacity-25"></i>
+                        <small>No reviews yet</small>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

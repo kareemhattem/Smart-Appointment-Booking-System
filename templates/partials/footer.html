@@ -1,0 +1,24 @@
+<footer class="footer mt-auto py-4" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <h5 class="text-white fw-bold mb-3"><i class="bi bi-calendar-check-fill text-primary me-2"></i>SmartBook</h5>
+                <p class="text-secondary small">A modern appointment booking platform connecting patients with healthcare and service providers.</p>
+            </div>
+            <div class="col-md-2">
+                <h6 class="text-white mb-3">Platform</h6>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'providers:list' %}" class="text-secondary text-decoration-none small">Find Providers</a></li>
+                    <li><a href="{% url 'accounts:register' %}" class="text-secondary text-decoration-none small">Register</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h6 class="text-white mb-3">Contact</h6>
+                <p class="text-secondary small mb-1"><i class="bi bi-envelope me-2"></i>support@smartbook.com</p>
+                <p class="text-secondary small"><i class="bi bi-telephone me-2"></i>+1 (555) 000-0000</p>
+            </div>
+        </div>
+        <hr class="border-secondary mt-3">
+        <p class="text-center text-secondary small mb-0">&copy; 2026 SmartBook. Built with Django &amp; Bootstrap 5.</p>
+    </div>
+</footer>

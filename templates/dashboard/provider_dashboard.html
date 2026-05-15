@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% block title %}Provider Dashboard — SmartBook{% endblock %}
+{% block main_class %}bg-light min-vh-100{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4 px-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h4 class="fw-bold mb-0">Provider Dashboard</h4>
+            <p class="text-muted mb-0 small">Manage your appointments and availability</p>
+        </div>
+        <a href="{% url 'providers:manage_slots' %}" class="btn btn-primary rounded-pill px-4">
+            <i class="bi bi-clock me-2"></i>Manage Availability
+        </a>
+    </div>
+
+    <!-- Stats -->
+    <div class="row g-3 mb-4">
+        <div class="col-6 col-md-2">
+            <div class="card border-0 shadow-sm text-center p-3">
+                <div class="fs-2 fw-bold text-primary">{{ stats.total }}</div>
+                <div class="text-muted small">Total</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-2">
+            <div class="card border-0 shadow-sm text-center p-3">
+                <div class="fs-2 fw-bold text-warning">{{ stats.pending }}</div>
+                <div class="text-muted small">Pending</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-2">
+            <div class="card border-0 shadow-sm text-center p-3">
+                <div class="fs-2 fw-bold text-info">{{ stats.confirmed }}</div>
+                <div class="text-muted small">Confirmed</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-2">
+            <div class="card border-0 shadow-sm text-center p-3">
+                <div class="fs-2 fw-bold text-success">{{ stats.completed }}</div>
+                <div class="text-muted small">Completed</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-2">
+            <div class="card border-0 shadow-sm text-center p-3">
+                <div class="fs-2 fw-bold text-warning">{{ stats.avg_rating }}</div>
+                <div class="text-muted small">Avg Rating</div>
+            </div>
+        </div>
+        <div class="col-6 col-md-2">
+            <div class="card border-0 shadow-sm text-center p-3">
+                <div class="fs-2 fw-bold text-secondary">{{ stats.total_reviews }}</div>
+                <div class="text-muted small">Reviews</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- Pending Requests -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0 py-3">
+                    <h6 class="fw-bold mb-0"><i class="bi bi-hourglass-split me-2 text-warning"></i>Pending Requests</h6>
+                </div>
+                <div class="card-body p-0">
+                    {% if pending %}
+                    <ul class="list-group list-group-flush">
+                        {% for appt in pending %}
+                        <li class="list-group-item px-4 py-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="fw-medium">{{ appt.patient.get_full_name|default:appt.patient.username }}</div>
+                                    <small class="text-muted">{{ appt.appointment_date|date:"M d" }} at {{ appt.start_time|time:"g:i A" }}</small>
+                                </div>
+                                <div class="d-flex gap-2">
+                                    <form method="post" action="{% url 'appointments:confirm' appt.pk %}">
+                                        {% csrf_token %}
+                                        <button class="btn btn-success btn-sm rounded-pill px-3">Accept</button>
+                                    </form>
+                                    <form method="post" action="{% url 'appointments:reject' appt.pk %}">
+                                        {% csrf_token %}
+                                        <button class="btn btn-outline-danger btn-sm rounded-pill px-3">Reject</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <div class="text-center py-4 text-muted">
+                        <i class="bi bi-inbox fs-2 d-block mb-2 opacity-25"></i>
+                        <small>No pending requests</small>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+                    <h6 class="fw-bold mb-0"><i class="bi bi-calendar-check me-2 text-success"></i>Upcoming Schedule</h6>
+                    <a href="{% url 'appointments:my_appointments' %}" class="btn btn-sm btn-outline-primary rounded-pill">View All</a>
+                </div>
+                <div class="card-body p-0">
+                    {% if upcoming %}
+                    <ul class="list-group list-group-flush">
+                        {% for appt in upcoming %}
+                        <li class="list-group-item px-4 py-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <div class="fw-medium">{{ appt.patient.get_full_name|default:appt.patient.username }}</div>
+                                    <small class="text-muted">{{ appt.appointment_date|date:"M d, Y" }} · {{ appt.start_time|time:"g:i A" }} – {{ appt.end_time|time:"g:i A" }}</small>
+                                </div>
+                                <span class="badge bg-{{ appt.get_status_badge }}">{{ appt.get_status_display }}</span>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                    <div class="text-center py-4 text-muted">
+                        <i class="bi bi-calendar-x fs-2 d-block mb-2 opacity-25"></i>
+                        <small>No upcoming appointments</small>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

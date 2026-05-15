@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Book Appointment — SmartBook{% endblock %}
+{% block main_class %}bg-light min-vh-100{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm" style="border-radius: 20px;">
+                <div class="card-body p-5">
+                    <div class="d-flex align-items-center mb-4">
+                        <img src="{% if provider.provider_profile.profile_image %}{{ provider.provider_profile.get_image_url }}{% else %}/static/images/default-provider.svg{% endif %}"
+                             class="rounded-circle me-3" width="56" height="56" style="object-fit:cover;"
+                             onerror="if(!this.dataset.fallbackUsed){this.dataset.fallbackUsed='1';this.src='/static/images/default-provider.svg';}else{this.onerror=null;}" alt="{{ provider.username }}">
+                        <div>
+                            <h5 class="fw-bold mb-0">Book with {{ provider.get_full_name|default:provider.username }}</h5>
+                            <small class="text-muted">Fill in your preferred date and time</small>
+                        </div>
+                    </div>
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="mb-3">
+                            <label class="form-label fw-medium small">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.errors %}<div class="text-danger small mt-1">{{ field.errors.0 }}</div>{% endif %}
+                        </div>
+                        {% endfor %}
+                        {% if form.non_field_errors %}
+                        <div class="alert alert-danger py-2 small">{{ form.non_field_errors.0 }}</div>
+                        {% endif %}
+                        <div class="d-flex gap-3 mt-4">
+                            <button type="submit" class="btn btn-primary rounded-pill px-5 fw-semibold">Confirm Booking</button>
+                            <a href="{% url 'providers:detail' provider.pk %}" class="btn btn-outline-secondary rounded-pill px-4">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

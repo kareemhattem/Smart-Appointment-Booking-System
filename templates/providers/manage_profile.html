@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Manage Provider Profile — SmartBook{% endblock %}
+{% block main_class %}bg-light min-vh-100{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-sm" style="border-radius: 20px;">
+                <div class="card-body p-5">
+                    <h5 class="fw-bold mb-4"><i class="bi bi-person-badge me-2 text-primary"></i>Provider Profile</h5>
+                    <form method="post" enctype="multipart/form-data" novalidate>
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            {% for field in form %}
+                            <div class="col-{% if field.name in 'category,is_available' %}md-6 col-12{% elif field.name == 'profile_image' %}12{% else %}md-6 col-12{% endif %}">
+                                <label class="form-label fw-medium small">{{ field.label }}</label>
+                                {{ field }}
+                                {% if field.errors %}<div class="text-danger small">{{ field.errors.0 }}</div>{% endif %}
+                                {% if field.help_text %}<div class="text-muted small">{{ field.help_text }}</div>{% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="d-flex gap-3 mt-4">
+                            <button type="submit" class="btn btn-primary rounded-pill px-5">Save Profile</button>
+                            <a href="{% url 'dashboard:home' %}" class="btn btn-outline-secondary rounded-pill px-4">Back</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

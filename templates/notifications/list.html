@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Notifications — SmartBook{% endblock %}
+{% block main_class %}bg-light min-vh-100{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h4 class="fw-bold mb-0">Notifications</h4>
+            {% if unread_count > 0 %}
+            <span class="badge bg-danger rounded-pill">{{ unread_count }} unread</span>
+            {% endif %}
+        </div>
+        <form method="post" action="{% url 'notifications:mark_all_read' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-secondary btn-sm rounded-pill">Mark All Read</button>
+        </form>
+    </div>
+
+    {% if notifications %}
+    <div class="card border-0 shadow-sm" style="border-radius: 16px;">
+        <ul class="list-group list-group-flush">
+            {% for notif in notifications %}
+            <li class="list-group-item px-4 py-3 {% if not notif.is_read %}bg-primary bg-opacity-5{% endif %}">
+                <div class="d-flex align-items-start gap-3">
+                    <div class="bg-primary bg-opacity-10 rounded-circle p-2 mt-1 flex-shrink-0">
+                        <i class="bi bi-bell-fill text-primary"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <div class="d-flex justify-content-between">
+                            <span class="fw-semibold">{{ notif.title }}</span>
+                            <small class="text-muted">{{ notif.created_at|timesince }} ago</small>
+                        </div>
+                        <p class="text-muted small mb-0">{{ notif.message }}</p>
+                    </div>
+                    {% if not notif.is_read %}
+                    <span class="badge bg-primary rounded-circle p-1 mt-1" style="width:10px;height:10px;"></span>
+                    {% endif %}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% else %}
+    <div class="text-center py-5">
+        <i class="bi bi-bell-slash fs-1 text-muted opacity-25 d-block mb-3"></i>
+        <h5 class="text-muted">No notifications</h5>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

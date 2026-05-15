@@ -1,0 +1,233 @@
+:root {
+    --primary: #4f8ef7;
+    --dark-bg: #1a1a2e;
+    --card-radius: 16px;
+    --transition: 0.2s ease;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: #1e293b;
+    background-color: #f8fafc;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Navbar */
+.navbar .nav-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    transition: color var(--transition);
+}
+
+.navbar .nav-link:hover {
+    color: var(--primary) !important;
+}
+
+/* Cards */
+.card {
+    border-radius: var(--card-radius);
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.provider-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12) !important;
+}
+
+.category-card {
+    border-radius: 16px;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.category-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(79, 142, 247, 0.15) !important;
+    border-color: var(--primary) !important;
+}
+
+/* Buttons */
+.btn {
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all var(--transition);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #4f8ef7, #6366f1);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #3b7de8, #5254cc);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(79, 142, 247, 0.4);
+}
+
+.btn-outline-primary:hover {
+    transform: translateY(-1px);
+}
+
+/* Forms */
+.form-control,
+.form-select {
+    border-radius: 10px;
+    border: 1.5px solid #e2e8f0;
+    padding: 0.6rem 0.9rem;
+    font-size: 0.9rem;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 142, 247, 0.15);
+}
+
+/* Tables */
+.table th {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #64748b;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+.table td {
+    vertical-align: middle;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #f8faff;
+}
+
+/* Badges */
+.badge {
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+/* Toast */
+.toast {
+    border-radius: 12px;
+    min-width: 280px;
+}
+
+/* Sidebar-style stat cards */
+.stat-card {
+    border-radius: 16px;
+    padding: 1.5rem;
+    background: white;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+/* Hero section */
+.hero-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(79, 142, 247, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* Notification badge pulse */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+#notif-badge:not(.d-none) {
+    animation: pulse 2s infinite;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Footer */
+.footer {
+    margin-top: auto;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2rem;
+    }
+
+    .hero-section {
+        min-height: auto !important;
+        padding: 4rem 0;
+    }
+}
+
+/* Loading spinner overlay */
+.page-loader {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    backdrop-filter: blur(4px);
+}
+
+/* Input group clean borders */
+.input-group .form-control {
+    border-left: none;
+}
+
+.input-group .input-group-text {
+    border-radius: 10px 0 0 10px;
+    border: 1.5px solid #e2e8f0;
+    border-right: none;
+}
+
+.input-group .form-control:focus {
+    border-left: none;
+    box-shadow: none;
+}
+
+.input-group:focus-within .input-group-text {
+    border-color: var(--primary);
+}
+
+.input-group:focus-within .form-control {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 142, 247, 0.15);
+}
